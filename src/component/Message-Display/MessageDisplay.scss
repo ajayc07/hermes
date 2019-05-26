@@ -1,0 +1,48 @@
+.message-display-container{
+
+    height: 100%;
+
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+
+    overflow-y: auto;
+
+    justify-content: flex-end;
+
+    background-color: #e2dad2;
+}
+
+.messages {
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    
+}
+
+.messages .from-messages , .messages .to-messages {
+
+    border-radius: 10px; 
+
+    margin: 12px 0px;
+    padding: 8px 10px;
+
+    min-width: 150px;
+    max-width: 70%;
+
+    display: flex;
+
+}
+
+.from-messages {
+    
+    background-color: white;
+}
+
+.to-messages {
+      
+    background-color: #8AAAE5;
+    
+}

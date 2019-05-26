@@ -1,0 +1,44 @@
+.send-message-container {
+
+    max-height: 80px;
+
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+
+    padding: 0 24px;
+
+    justify-content: center;
+
+    .input-button {
+        
+        display: flex;
+
+        textarea {
+           
+            width: 100%;
+            border-radius: 6px;
+            height: 40px;
+        }
+
+        textarea {
+           
+          -webkit-appearance: textfield;
+        }
+
+        textarea:focus {
+            outline: none;
+        }
+
+        button {
+           
+            background-color: #8AAAE5;
+            margin-left: 12px;
+            border-radius: 50%;
+        }
+
+        button:focus {
+            outline: none;
+        }
+    }
+}
