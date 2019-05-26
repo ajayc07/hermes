@@ -4,6 +4,8 @@ import './DirectMessage.scss';
 export class DirectMessageComponent extends
     React.Component {
 
+    selectedPerson = null;
+
     constructor(props) {
 
         super(props);
@@ -25,12 +27,21 @@ export class DirectMessageComponent extends
                 name : "Naruto"
             },
             {
-                id : "dude01",
+                id : "dude03",
                 name : "Luffy"
             }
         ]})
         
     }
+
+    selectDM(selectedPerson) {
+        this.state.dmMessage.map((person) => {
+            if(person.id === selectedPerson.id) {
+                this.state.selectedPerson = person;
+            }
+        })
+        console.log('Legends', this.state.selectedPerson);
+     }
 
     render() {
         return (
@@ -41,7 +52,7 @@ export class DirectMessageComponent extends
                 </div>
                 <ul className="dm-list">
                     {this.state.dmMessage.map(person => {
-                            return <li key={person.id}>
+                            return <li key={person.id} onClick={() => this.selectDM(person)}>
                                         {person.name}
                                     </li>
                     })}

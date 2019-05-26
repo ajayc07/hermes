@@ -27,7 +27,7 @@ export class GroupMessageComponent extends
                     members: ['dude01' , 'dude04' ,'dude06']
                 },
                 {
-                    id : "group01",
+                    id : "group03",
                     name : "Straw Hats"
                     ,members: ['dude01' , 'dude057' ,'dude034']
                 }
