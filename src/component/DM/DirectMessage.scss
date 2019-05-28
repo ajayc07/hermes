@@ -1,6 +1,8 @@
 .dm-container{
     
     .dm-header{
+        padding: 0px 8px;
+
         display: flex;
         justify-content: space-between;
 
@@ -27,12 +29,12 @@
     }
 
     .dm-list li{
-        border-bottom: 1px solid grey;
-        height: 40px;
-        margin: 8px 0;
+        border-bottom: 1px solid #e9ebeb;
+        height: 50px;
+        padding: 5px 8px 0;
     }
 
     .selected-li {
-        background-color: blue;
+        background-color: #e9ebeb;
     }
 }

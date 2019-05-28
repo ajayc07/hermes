@@ -5,3 +5,11 @@ export function addMessage(data) {
         payload: data 
     }
 }
+
+export function selectItem(data) {
+
+    return { 
+        type: 'SELECT_ITEM',
+        payload: data 
+    }
+}

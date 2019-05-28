@@ -1,9 +1,7 @@
 import React from 'react';
 import './MessageDisplay.scss';
 
-import Store from '../../redux/store';
-
-const store = Store();
+import { connect } from 'react-redux';
 
 export class MessageDisplayComponent extends
     React.Component {
@@ -16,18 +14,12 @@ export class MessageDisplayComponent extends
                 messageData : []
             }
 
-            console.log('Wow da',store.getState());
         }
 
         
 
         componentDidMount() 
-        {
-            
-            store.subscribe(() => {
-                console.log('Wow da',store.getState());
-            })
-            
+        {   
 
             this.setState({messageData : [
                 {
@@ -61,21 +53,35 @@ export class MessageDisplayComponent extends
         }
 
         render() {
-            return (
+            console.log('storeValue' , this.props.fromStore);
+            
+            if (this.props.fromStore && this.props.fromStore.type === 'message' && this.props.fromStore.id) {
+                this.state.messageData.push(this.props.fromStore)
+            }
+
+            return (    
                 <div className="message-display-container">
+                    <div className="message-header"> 
+                        {this.props.fromStore && (this.props.fromStore.type === 'group' || this.props.fromStore.type === 'dm' || this.props.fromStore.type === 'thread') ? this.props.fromStore.name : ''}
+                    </div>
                     <div className="messages">
 
                         {this.state.messageData.map(message => {
                             return <div key={message.id} className={message.toMessage ? 'to-messages' : 'from-messages'}>
                             {message.content}
-                            </div>
+                            </div> 
                         })}
-
                     </div>
                 </div>
             )
         }
 }
 
+const mapStateToProps = (state) => {
 
-export default MessageDisplayComponent;  
+    return {
+        fromStore : state
+    }
+}
+
+export default connect (mapStateToProps)(MessageDisplayComponent);  

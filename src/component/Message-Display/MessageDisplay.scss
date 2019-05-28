@@ -9,7 +9,7 @@
 
     overflow-y: auto;
 
-    justify-content: flex-end;
+    justify-content: space-between;
 
     background-color: #e2dad2;
 }
@@ -19,7 +19,21 @@
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    
+}
+
+.message-header {
+    background-color: white;
+    height: 60px;
+    padding: 0 16px;
+    margin: -8px ;
+
+    color: black;
+    font-weight: bold;
+    font-size: 20px;
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
 }
 
 .messages .from-messages , .messages .to-messages {
@@ -33,7 +47,7 @@
     max-width: 70%;
 
     display: flex;
-
+    border: 1px solid #000;
 }
 
 .from-messages {

@@ -1,6 +1,9 @@
 import React from 'react';
 import './DirectMessage.scss';
 
+import { connect } from 'react-redux';
+import { selectItem } from '../../redux/actions';
+
 export class DirectMessageComponent extends
     React.Component {
 
@@ -13,6 +16,7 @@ export class DirectMessageComponent extends
         this.state = {
             dmMessage: []
         }
+
     }
 
     componentDidMount() 
@@ -20,27 +24,33 @@ export class DirectMessageComponent extends
         this.setState({dmMessage : [
             {
                 id : "dude01",
-                name : "Goku"
+                name : "Goku",
+                type : 'dm'
             },
             {
                 id : "dude02",
-                name : "Naruto"
+                name : "Naruto",
+                type : 'dm'
             },
             {
                 id : "dude03",
-                name : "Luffy"
+                name : "Luffy",
+                type : 'dm'
             }
         ]})
         
     }
 
-    selectDM(selectedPerson) {
-        this.state.dmMessage.map((person) => {
+    selectItem(selectedPerson) {
+       
+        const currentSelectedPerson = this.state.dmMessage.find((person) => {
             if(person.id === selectedPerson.id) {
-                this.state.selectedPerson = person;
+                return selectedPerson;
             }
         })
-        console.log('Legends', this.state.selectedPerson);
+        
+        this.setState({selectedPerson : currentSelectedPerson});
+        this.props.selectItem(currentSelectedPerson);
      }
 
     render() {
@@ -52,7 +62,7 @@ export class DirectMessageComponent extends
                 </div>
                 <ul className="dm-list">
                     {this.state.dmMessage.map(person => {
-                            return <li key={person.id} onClick={() => this.selectDM(person)}>
+                            return <li key={person.id}  className= {(this.props.fromStore.type ==='dm' && person.id === this.props.fromStore.id) ? 'selected-li' : ''} onClick={() => this.selectItem(person)}>
                                         {person.name}
                                     </li>
                     })}
@@ -62,4 +72,20 @@ export class DirectMessageComponent extends
     }
 }
 
-export default DirectMessageComponent;
+const mapStateToProps = (state) => {
+
+    return {
+            fromStore : state
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+
+    return {
+        selectItem: (state) => {
+            dispatch(selectItem(state))
+        }
+    }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(DirectMessageComponent);

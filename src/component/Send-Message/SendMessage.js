@@ -19,7 +19,12 @@ export class SendMessageComponent extends
     }
 
     addMessage() {
-        return this.props.currentMessage;
+        
+        if (this.state.currentMessage !== '' && this.state.currentMessage !== ' ') {
+
+            this.props.addMessage(this.state);
+            this.setState({currentMessage : ''});
+        }
     }
 
     handleChange(event) {
@@ -30,8 +35,8 @@ export class SendMessageComponent extends
         return (
             <div className = "send-message-container">
                 <div className = "input-button">
-                    <textarea value= {this.state.currentMessage} onChange= {this.handleChange.bind(this)}></textarea>
-                    <button onClick={(e) => this.props.addMessage(this.state)} >Send</button>
+                    <textarea value= {this.state.currentMessage} placeholder="Type your message here" onChange= {this.handleChange.bind(this)}></textarea>
+                    <button onClick={(e) => this.addMessage(this.state)} >Send</button>
                 </div>
             </div>
         )
@@ -46,7 +51,7 @@ const mapDispatchToProps = (dispatch) => {
             dispatch(addMessage(state.currentMessage))
         }
     }
-  }
+}
 
 
 export default connect(null,mapDispatchToProps)(SendMessageComponent);
