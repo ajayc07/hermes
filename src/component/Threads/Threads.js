@@ -53,7 +53,7 @@ export class ThreadMessageComponent extends
                     </div>                
                     <ul className="thread-list">
                         {this.state.threads.map(thread => {
-                                return <li key={thread.id} className= {(this.props.fromStore.type ==='thread' && thread.id === this.props.fromStore.id) ? 'selected-li' : ''} onClick={() => this.selectItem(thread)}>
+                                return <li key={thread.id} className= {(this.props.fromStore.selectedItems.type ==='thread' && thread.id === this.props.fromStore.selectedItems.id) ? 'selected-li' : ''} onClick={() => this.selectItem(thread)}>
                                             {thread.name}
                                     </li>
                         })}

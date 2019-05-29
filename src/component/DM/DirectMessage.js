@@ -62,7 +62,7 @@ export class DirectMessageComponent extends
                 </div>
                 <ul className="dm-list">
                     {this.state.dmMessage.map(person => {
-                            return <li key={person.id}  className= {(this.props.fromStore.type ==='dm' && person.id === this.props.fromStore.id) ? 'selected-li' : ''} onClick={() => this.selectItem(person)}>
+                            return <li key={person.id}  className= {(this.props.fromStore.selectedItems.type ==='dm' && person.id === this.props.fromStore.selectedItems.id) ? 'selected-li' : ''} onClick={() => this.selectItem(person)}>
                                         {person.name}
                                     </li>
                     })}

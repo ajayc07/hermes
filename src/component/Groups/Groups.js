@@ -1,5 +1,7 @@
 import React from 'react';
 import './Groups.scss';
+import { Redirect } from 'react-router-dom'
+
 
 
 import { connect } from 'react-redux';
@@ -13,7 +15,8 @@ export class GroupMessageComponent extends
             super(props);
     
             this.state = {
-                gMessage: []
+                gMessage: [],
+                redirect: false
             }
         }
     
@@ -44,7 +47,7 @@ export class GroupMessageComponent extends
 
         selectItem(selectedGroup) {
        
-            console.log('selection',this.props.fromStore);
+            console.log('selection',this.props.fromStore.selectedItems);
             
             const currentselectedGroup = this.state.gMessage.find((group) => {
                 if(group.id === selectedGroup.id) {
@@ -55,17 +58,31 @@ export class GroupMessageComponent extends
             this.setState({selectedGroup : currentselectedGroup});
             this.props.selectItem(currentselectedGroup);
          }
+
+        addGroup() {
+            this.setState({
+                redirect: true
+            })
+        }
+
     
         render() {
+
+            const redirect = this.state.redirect;
+
+            if (redirect) {
+                return <Redirect to='/addGroup' />
+            }
+
             return (
                 <div className="group-container">
                     <div className="group-header">
                         <h3>Groups</h3>
-                        <button className="icon">+</button>
+                        <button className="icon"  onClick={(e) => this.addGroup(this.state)}>+</button>
                     </div>
                     <ul className="group-list">
                         {this.state.gMessage.map(group => {
-                                return <li key={group.id} className= {(this.props.fromStore.type ==='group' && group.id === this.props.fromStore.id) ? 'selected-li' : ''} onClick={() => this.selectItem(group)}>
+                                return <li key={group.id} className= {(this.props.fromStore.selectedItems.type ==='group' && group.id === this.props.fromStore.selectedItems.id) ? 'selected-li' : ''} onClick={() => this.selectItem(group)}>
                                             {group.name} 
                                         </li>
                         })}
@@ -78,7 +95,7 @@ export class GroupMessageComponent extends
 const mapStateToProps = (state) => {
 
     return {
-            fromStore : state
+            fromStore: state
     }
 }
 

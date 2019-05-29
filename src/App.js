@@ -1,21 +1,17 @@
 import React from 'react';
 import './App.scss';
+import { BrowserRouter as Router, Route, } from 'react-router-dom'
 
+import ChatWrapperComponent from './component/Chat-Wrapper/ChatWrapper.js';
+import AddGroupComponent from './component/Add-Group/AddGroup.js';
 
-import ChatListComponent from './component/Chat-List/ChatList.js';
-import MessagePanelComponent from './component/Message-Panel/MessagePanel.js';
-
-
-
-function App() {
-  return (
-
-      <div className="App">
-        <ChatListComponent/>
-        <MessagePanelComponent/>
-      </div>
-
-  );
+class App extends
+  React.Component {
+  render() {
+    return (
+      <ChatWrapperComponent/>
+    );
+  }
 }
 
 export default App;

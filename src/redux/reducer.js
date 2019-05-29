@@ -1,4 +1,19 @@
-const initalMessageState = [{}];
+const initalMessageState = {
+    messageItems : {
+        type: '',
+        id: '',
+        content: '',
+        from: '',
+        toMessage: false,
+        seenStatus: false
+    },
+    selectedItems : {
+        id: '',
+        members: '',
+        name: '',
+        type: ''
+    }
+};
 
 const messageReducer = (state = initalMessageState, action) => {
 
@@ -8,7 +23,6 @@ const messageReducer = (state = initalMessageState, action) => {
         case 'ADD_NEW_MESSAGE':
 
             let sendMessage = {
-                ...newState,
                 type: 'message',
                 id: 'message01' + Math.random(1, 1000),
                 content: action.payload,
@@ -17,7 +31,7 @@ const messageReducer = (state = initalMessageState, action) => {
                 seenStatus: false
             }
 
-            return sendMessage;
+            return {...newState,messageItems : sendMessage};
 
         case 'SELECT_ITEM':
             console.log('Payload', action.payload);
@@ -27,7 +41,6 @@ const messageReducer = (state = initalMessageState, action) => {
             if (action.payload.type === 'group') {
 
                 selectedItem = {
-                    ...newState,
                     id: action.payload.id,
                     members: action.payload.members,
                     name: action.payload.name,
@@ -36,14 +49,13 @@ const messageReducer = (state = initalMessageState, action) => {
             } else if (action.payload.type === 'dm'|| action.payload.type === 'thread') {
 
                 selectedItem = {
-                    ...newState,
                     id: action.payload.id,
                     name: action.payload.name,
                     type: action.payload.type,
                 }
             }
-
-            return selectedItem;
+            
+            return {...newState,selectedItems :selectedItem};
 
         default:
             return state;
