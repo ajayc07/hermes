@@ -18,6 +18,7 @@ ReactDOM.render(
         <Router>
             <Switch>
                 <Route exact  path="/" component={App} />
+                <Route path="/home" component={App} />
                 <Route path="/addGroup" component={AddGroupComponent} />
             </Switch>
         </Router>

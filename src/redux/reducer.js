@@ -12,6 +12,12 @@ const initalMessageState = {
         members: '',
         name: '',
         type: ''
+    },
+    newGroup : {
+        type: '',
+        id : '',
+        name:'',
+        member: []
     }
 };
 
@@ -26,20 +32,22 @@ const messageReducer = (state = initalMessageState, action) => {
                 type: 'message',
                 id: 'message01' + Math.random(1, 1000),
                 content: action.payload,
-                from: 'dude',
+                from: '',
                 toMessage: true,
                 seenStatus: false
             }
 
-            return {...newState,messageItems : sendMessage};
+            return {...newState, messageItems : sendMessage};
 
         case 'SELECT_ITEM':
-            console.log('Payload', action.payload);
-
+           
+            newState.messageItems = initalMessageState.messageItems
+            newState.newGroup = initalMessageState.newGroup
             let selectedItem = {};
 
             if (action.payload.type === 'group') {
-
+                console.log('Groups' , action.payload);
+                
                 selectedItem = {
                     id: action.payload.id,
                     members: action.payload.members,
@@ -55,8 +63,18 @@ const messageReducer = (state = initalMessageState, action) => {
                 }
             }
             
-            return {...newState,selectedItems :selectedItem};
+            return {...newState, selectedItems :selectedItem};
 
+        case 'ADD_NEW_GROUP':
+            let newGroup = {};
+            console.log('Payload', action.payload);
+            newGroup = {
+                type: 'group',
+                id: 'group' + Math.random(1, 1000),
+                name:  action.payload.groupName,
+                members: action.payload.selectedMember
+            }
+            return {...newState, newGroup :newGroup};
         default:
             return state;
     }

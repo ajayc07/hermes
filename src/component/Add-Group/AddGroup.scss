@@ -1,5 +1,4 @@
-.message-panel-container{
-    
+.add-group-container{
     background-color: #FEF9F2;
 
     height: 100%;
@@ -7,4 +6,103 @@
     display: flex;
     flex-direction: column;
     flex: 1;
+
+    .header {
+        background-color: blue;
+        min-height: 60px;
+        color: #FFFFFF;
+        font-size: 30px;
+        font-weight: bold;
+        padding: 12px 24px 0;
+    }
+
+    .form-container {
+      
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        
+
+        justify-content: center;
+        align-items: center;
+
+        form{
+            display: flex;
+            flex-direction: column;
+            width: 50%;
+            height: 50%;
+            background-color:white;
+            box-shadow: 10px 10px 8px 10px  #888888;
+            padding: 24px;
+            justify-content: space-between;
+        }
+
+        label{
+            margin-bottom: 5px;
+        }
+
+        .input-field {
+            
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+
+            input[type="text"] {
+                
+                width: 100%;
+                padding: 12px;
+                height: 50px;
+                padding: 0 5px;
+                margin-bottom: 16px;
+            }
+        }
+
+        .suggestion-container{
+            margin-top: -16px;
+            position: relative;
+            
+            
+            li{
+                list-style: none;
+            }
+            
+            .suggestions {
+                position: absolute;
+                background-color:whitesmoke;
+                z-index: 1;
+                width: 40%;
+                border-radius: 5px;
+
+                display: flex;
+                flex-direction: column;
+
+                li{ 
+                    height: 30px;
+                    padding: 12px;
+                    font-size: 12px;
+                    border-bottom: 1px solid #e9ebeb;
+                }
+            }
+        }
+        .button-container{
+            
+            display: flex;
+            justify-content: flex-end;
+
+            button {
+                width: 150px;
+                height: 40px;
+                outline: none;
+                border: 1px solid cadetblue;
+                background-color: transparent;
+                margin-right: 16px;
+                border-radius: 5px;
+            }
+
+            button:last-child {
+                background-color: cadetblue;
+            }
+        }
+    }
 }

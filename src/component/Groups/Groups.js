@@ -47,8 +47,6 @@ export class GroupMessageComponent extends
 
         selectItem(selectedGroup) {
        
-            console.log('selection',this.props.fromStore.selectedItems);
-            
             const currentselectedGroup = this.state.gMessage.find((group) => {
                 if(group.id === selectedGroup.id) {
                     return selectedGroup;
@@ -56,6 +54,8 @@ export class GroupMessageComponent extends
             })
             
             this.setState({selectedGroup : currentselectedGroup});
+            console.log("heree>>>>",currentselectedGroup);
+            
             this.props.selectItem(currentselectedGroup);
          }
 
@@ -67,8 +67,14 @@ export class GroupMessageComponent extends
 
     
         render() {
-
+            
             const redirect = this.state.redirect;
+            const newGroup = this.props.fromStore.newGroup;
+            
+            if ( newGroup.type === 'group' && newGroup.id) {
+                
+                this.state.gMessage.push(newGroup)
+            }
 
             if (redirect) {
                 return <Redirect to='/addGroup' />

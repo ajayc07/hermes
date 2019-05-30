@@ -2,12 +2,9 @@
 
     height: 100%;
 
-    padding: 8px;
     display: flex;
     flex-direction: column;
     flex: 1;
-
-    overflow-y: auto;
 
     justify-content: space-between;
 
@@ -16,9 +13,13 @@
 
 .messages {
 
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
+    // display: flex;
+    // flex-direction: column;
+    // align-items: flex-end;
+
+    overflow-y: auto;
+    height: 100%;
+    margin: 12px 8px 0;
 }
 
 .message-header {
@@ -32,8 +33,13 @@
     font-size: 20px;
 
     display: flex;
-    justify-content: flex-start;
-    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+
+    .group-member {
+        font-size: 12px;
+    }
 }
 
 .messages .from-messages , .messages .to-messages {
@@ -46,16 +52,26 @@
     min-width: 150px;
     max-width: 70%;
 
-    display: flex;
+    // display: flex;
+    // flex-direction: column;
+
+    .group-send-by{
+
+        font-weight: bold;
+        font-size: 12px;
+    }
 }
 
 .from-messages {
     
     background-color: white;
+    float: left;
+    clear: both;
 }
 
 .to-messages {
       
     background-color: #8AAAE5;
-    
+    float: right;
+    clear: both;
 }

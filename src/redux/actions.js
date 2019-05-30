@@ -13,3 +13,11 @@ export function selectItem(data) {
         payload: data 
     }
 }
+
+export function addGroup(data) {
+
+    return { 
+        type: 'ADD_NEW_GROUP',
+        payload: data 
+    }
+}
